@@ -13,7 +13,7 @@ const projects = [
       "A secure Expense Tracker built with Next.js, Prisma, and PostgreSQL. User authentication is handled with Clerk. Track your daily expenses, view analytics, and manage budgets easily.",
     image: "/project/expense-ai.png", // updated
     live: "#",
-    code: "https://github.com/snearaparvin/ExpenseTracker",
+    code: "https://github.com/Sneara0/next-expense-tracker-ai",
   },
   {
     title: "Job Hunt Hub",
@@ -21,7 +21,7 @@ const projects = [
       "A complete job portal where users can browse, apply, and track jobs. Admin panel included for posting jobs. Built with React, Node.js, and MongoDB.",
     image: "/project/Job website.png", // updated
     live: "#",
-    code: "https://github.com/snearaparvin/JobHuntHub",
+    code: "https://github.com/Sneara0/Job-Website-MERN",
   },
   {
     title: "E-commerce Website",
@@ -29,7 +29,7 @@ const projects = [
       "A full-featured e-commerce platform with product listing, cart, and checkout. Built using Next.js, Tailwind CSS, and Stripe for payments.",
     image: "/project/E-commerce.png", // updated
     live: "#",
-    code: "https://github.com/snearaparvin/EcommerceSite",
+    code: "https://github.com/Sneara0/E-commerce-Project-Full-stack",
   },
   {
     title: "Hospital Management System",
@@ -37,7 +37,7 @@ const projects = [
       "Manage patients, doctors, appointments, and billing efficiently using React, Node.js, and Tailwind CSS.",
     image: "/project/lifeline.png", // updated
     live: "#",
-    code: "https://github.com/snearaparvin/HospitalManagement",
+    code: "https://github.com/Sneara0/Lifeline-Hospital-Website",
   },
   {
     title: "Flight Booking Agency",
@@ -45,7 +45,7 @@ const projects = [
       "A flight booking web app with AI-powered suggestions for flights and travel plans, built with React, Next.js, and Tailwind CSS.",
     image: "/project/flight.png", // updated
     live: "#",
-    code: "https://github.com/snearaparvin/AIFlightAgency",
+    code: "https://github.com/Sneara0/Responsive-Flight-Agency-Website",
   },
 ];
 
