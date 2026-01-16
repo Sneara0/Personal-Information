@@ -1,9 +1,9 @@
+import HeroSection from "./components/HeroSection";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-500">
-        Hi, I am a Frontend Developer 🚀
-      </h1>
+    <main className="flex items-center justify-center min-h-screen  dark:bg-gray-1000">
+      <HeroSection />
     </main>
   );
 }
