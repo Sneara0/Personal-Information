@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
-//import Contact from "./components/Contact";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 
@@ -26,6 +26,7 @@ export default function RootLayout({
         <AboutSection />
         <SkillsSection/>
       <ProjectsSection/>
+      <Contact/>
        <Footer/>
       </body>
     </html>
