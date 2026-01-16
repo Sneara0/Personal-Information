@@ -57,7 +57,7 @@ const HeroSection = () => {
 
         <div className="flex justify-center md:justify-start flex-wrap gap-3 mt-4">
           <Link
-            href="/Sneara_Parvin_Frontend_Resume.pdf"
+            href="Sneara_Parvin_Full Stack.pdf"
             target="_blank"
             className="px-4 py-2 sm:px-5 sm:py-3 bg-gradient-to-r from-pink-500 via-purple-600 to-black text-white font-semibold rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
           >
