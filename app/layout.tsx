@@ -8,8 +8,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll"; 
 import Cursor from "./components/Cursor"; 
-import { ThemeProvider } from "./components/ThemeProvider"; // ThemeProvider ইমপোর্ট করুন
+import { ThemeProvider } from "./components/ThemeProvider"; 
 import Services from "./components/services/Services";
+import Experience from "./components/experience/Experience"; // ইম্পোর্ট নিশ্চিত করুন
 
 export const metadata: Metadata = { 
   title: "Sneara | Portfolio",
@@ -24,19 +25,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-white dark:bg-[#0a0a0a] text-gray-800 dark:text-gray-100 transition-colors duration-300">
-        {/* ThemeProvider দিয়ে পুরো অ্যাপকে র‍্যাপ করা হলো */}
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 
           enableSystem={false}
         >
-          {/* Lenis Smooth Scroll Wrapper */}
           <SmoothScroll>
             <Cursor /> 
             <Navbar />
             <main>{children}</main>
+            
+            {/* সেকশনগুলোর সিরিয়াল */}
             <AboutSection />
-            <Services></Services>
+            <Services />
+            <Experience /> {/* এখন আর এরর আসবে না */}
             <SkillsSection />
             <ProjectsSection />
             <Contact />

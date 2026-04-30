@@ -1,79 +1,96 @@
 "use client";
 
-import { motion } from "framer-motion";
-import {
-  FaFacebook,
-  FaLinkedin,
-  FaGithub,
-  FaEnvelope,
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaGithub, FaLinkedinIn, FaFacebookF, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
-} from "react-icons/fa";
+gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".footer-content", {
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.out",
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="relative bg-gradient-to-b from-gray-950 via-gray-900 to-black text-gray-300 py-14 overflow-hidden">
-      
-      {/* Glow Effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-52 h-52 bg-indigo-500/10 blur-3xl top-0 left-0 rounded-full animate-pulse" />
-        <div className="absolute w-52 h-52 bg-pink-500/10 blur-3xl bottom-0 right-0 rounded-full animate-pulse" />
-      </div>
+    <footer
+      ref={footerRef}
+      className="relative bg-[#0a0a0a] pt-20 pb-10 px-6 overflow-hidden border-t border-white/5"
+    >
+      {/* 🌌 Background Glow Effect */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <motion.div
-        className="relative max-w-5xl mx-auto px-4 flex flex-col items-center gap-5 text-center"
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Name */}
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-          Sneara Parvin
-        </h2>
+      <div className="max-w-7xl mx-auto relative z-10 footer-content">
+        <div className="flex flex-col items-center text-center space-y-8">
+          
+          {/* Logo / Name Area */}
+          <div className="space-y-2">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase italic">
+              Sneara <span className="text-red-600">Parvin</span>
+            </h2>
+            <p className="text-gray-500 uppercase tracking-[0.3em] text-xs font-bold">
+              Full Stack Web Developer • Architecting Digital Experiences
+            </p>
+          </div>
 
-        {/* Role */}
-        <p className="text-sm md:text-base text-gray-400 tracking-wide">
-          Full Stack Web Developer • React • Next.js • Node.js
-        </p>
+          {/* Social Links with Hover Effects */}
+          <div className="flex gap-4">
+            {[
+              { icon: <FaGithub />, link: "https://github.com/Sneara0", color: "hover:bg-gray-800" },
+              { icon: <FaLinkedinIn />, link: "https://linkedin.com/in/sneara-parvin-aa0a4b285/", color: "hover:bg-blue-600" },
+              { icon: <FaFacebookF />, link: "https://facebook.com/sneyara.parabhina/", color: "hover:bg-blue-700" },
+              { icon: <FaEnvelope />, link: "mailto:snearaparvin.cse@gmail.com", color: "hover:bg-red-600" },
+            ].map((social, idx) => (
+              <a
+                key={idx}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white transition-all duration-300 transform hover:-translate-y-2 ${social.color}`}
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
 
-        {/* Social Icons */}
-        <div className="flex gap-5 pt-2">
-          {[
-            { icon: <FaGithub />, link: "https://github.com/Sneara0" },
-            { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/sneara-parvin-aa0a4b285/" },
-            { icon: <FaFacebook />, link: "" },
-         
-            { icon: <FaEnvelope />, link: "mailto:snearaparvin.cse@gmail.com" },
-          ].map((item, i) => (
-            <motion.a
-              key={i}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                text-xl p-3 rounded-2xl 
-                bg-gray-800/50 border border-gray-700 
-                backdrop-blur-md
-                hover:bg-gradient-to-r hover:from-pink-500/20 hover:to-indigo-500/20
-                transition-all duration-300
-                hover:scale-125
-                hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]
-              "
-              whileHover={{ rotate: 3 }}
-              whileTap={{ scale: 0.9 }}
+          {/* CTA / Quick Links */}
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-8"></div>
+
+          <div className="flex flex-col md:flex-row justify-between items-center w-full text-gray-500 text-sm gap-6">
+            <p>© {new Date().getFullYear()} Sneara Parvin — All Rights Reserved</p>
+            
+            {/* Scroll to Top Button */}
+            <button 
+              onClick={scrollToTop}
+              className="flex items-center gap-2 text-white hover:text-red-600 transition-colors group"
             >
-              {item.icon}
-            </motion.a>
-          ))}
+              <span className="uppercase tracking-widest font-bold text-xs">Back to top</span>
+              <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-red-600 group-hover:bg-red-600 transition-all">
+                <FaArrowUp className="text-[10px]" />
+              </div>
+            </button>
+          </div>
         </div>
-
-        {/* Divider */}
-        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-gray-600 to-transparent my-3" />
-
-        {/* Copyright */}
-        <p className="text-gray-500 text-xs tracking-wide">
-          © {new Date().getFullYear()} Sneara Parvin — All Rights Reserved
-        </p>
-      </motion.div>
+      </div>
     </footer>
   );
 };
