@@ -69,7 +69,7 @@ const HeroSection = () => {
 
           <div className="pt-4">
             <Link
-              href="/resume.pdf"
+              href="Sneara_Parvin_Full Stack.pdf"
               className="inline-block px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 hover:scale-105 transition-all duration-300 shadow-lg shadow-red-600/20"
             >
               Download Resume
