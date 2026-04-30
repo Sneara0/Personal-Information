@@ -6,11 +6,14 @@ import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-
+import SmoothScroll from "./components/SmoothScroll"; 
+import Cursor from "./components/Cursor"; 
+import { ThemeProvider } from "./components/ThemeProvider"; // ThemeProvider ইমপোর্ট করুন
+import Services from "./components/services/Services";
 
 export const metadata: Metadata = { 
   title: "Sneara | Portfolio",
-  description: "Personal portfolio built with Next.js + Tailwind CSS + Framer Motion",
+  description: "Personal portfolio built with Next.js + Tailwind CSS + GSAP + Lenis",
 };
 
 export default function RootLayout({
@@ -20,14 +23,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-gray-100 transition-all duration-300">
-        <Navbar />
-        <main >{children}</main>
-        <AboutSection />
-        <SkillsSection/>
-      <ProjectsSection/>
-      <Contact/>
-       <Footer/>
+      <body className="bg-white dark:bg-[#0a0a0a] text-gray-800 dark:text-gray-100 transition-colors duration-300">
+        {/* ThemeProvider দিয়ে পুরো অ্যাপকে র‍্যাপ করা হলো */}
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem={false}
+        >
+          {/* Lenis Smooth Scroll Wrapper */}
+          <SmoothScroll>
+            <Cursor /> 
+            <Navbar />
+            <main>{children}</main>
+            <AboutSection />
+            <Services></Services>
+            <SkillsSection />
+            <ProjectsSection />
+            <Contact />
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

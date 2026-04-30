@@ -1,144 +1,160 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import { FaBarsStaggered, FaFacebook, FaSquareWhatsapp } from "react-icons/fa6";
-import { FaTimes } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram } from "react-icons/fa";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { HiSun, HiMoon } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import snearaLogo from "@/public/images/sneara1-logo.png"; 
+import { useTheme } from "next-themes";
+import snearaLogo from "@/public/images/sneara1-logo.png"; // আপনার লোগো
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const links = [
     { name: "Home", path: "#" },
     { name: "About", path: "#about" },
-    { name: "Projects", path: "#projects" },
-    { name: "Skills", path: "#skills" },
+    { name: "Services", path: "#services" },
+    { name: "Project", path: "#projects" },
     { name: "Contact", path: "#contact" },
   ];
 
-  return (
-    <nav className="sticky top-0 z-20  bg-gradient-to-r from-gray-400 via-pink-400 to-black dark:from-pink-800 dark:via-pink-900 dark:to-black text-white border-b-2 border-pink-200 dark:border-green-800 transition-all duration-300">
-      <div className="max-w-6xl mx-auto flex z-0 justify-between items-center py-0 px-0">
+  const socialLinks = [
+    { Icon: FaInstagram, href: "#" },
+    { Icon: FaLinkedinIn, href: "#" },
+    { Icon: FaTwitter, href: "#" },
+    { Icon: FaFacebookF, href: "#" },
+  ];
 
-        {/* 🦋 Butterfly + Dev Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
+  return (
+    <nav className="fixed top-0 w-full z-[100] bg-black/80 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5 px-6 py-2 md:px-12 transition-all duration-300">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        
+        {/* Left Side: Your Logo */}
+        <Link href="/" className="flex items-center group">
           <motion.div
-            animate={{
-              y: [0, -3, 0, 3, 0],
-              rotate: [0, 2, -2, 2, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            whileHover={{
-              scale: 1.2,
-              rotate: [0, 10, -10, 0],
-              transition: { duration: 0.6, repeat: Infinity },
-            }}
-            className="flex items-center"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            className="relative w-16 h-16 md:w-20 md:h-20"
           >
             <Image
               src={snearaLogo}
-              alt="Dev Logo"
-              width={95}
-              height={95}
+              alt="Sneara Logo"
+              fill
               className="object-contain"
+              priority
             />
           </motion.div>
-
-          <motion.span
-            className="text-xl font-bold  text-green tracking-wide"
-            animate={{
-              scale: [1, 1.1, 1, 1.1, 1],
-              rotate: [0, 3, -3, 3, 0],
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ 
-              scale: 1.2, 
-              background: "linear-gradient(90deg, #ec4899, #000000)", 
-              
-           
-            }}
-          >
-            Developer
-    
-          </motion.span>
+       
         </Link>
 
-        {/* 🌸 Desktop Links */}
-        <div className="hidden md:flex gap-8 items-center">
+        {/* Center: Desktop Navigation Links */}
+        <div className="hidden lg:flex gap-8 items-center">
           {links.map((link) => (
             <Link
-              key={link.path}
+              key={link.name}
               href={link.path}
-              className="relative group text-gray font-medium transition"
+              className="text-[13px] font-bold text-white uppercase tracking-widest hover:text-red-600 transition-colors duration-300"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-pink-400 group-hover:w-full transition-all duration-300"></span>
             </Link>
           ))}
         </div>
 
-        {/* 🍃 Mobile Menu Button */}
-        <motion.button
-          className={`md:hidden cursor-pointer p-2 rounded-full border-2 ${
-            open
-              ? "border-pink-400 bg-pink-200 text-pink-900"
-              : "border-pink-400 bg-pink-500 text-white hover:border-pink-700 transition-all duration-300"
-          }`}
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle Menu"
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {open ? <FaTimes size={20} /> : <FaBarsStaggered size={20} />}
-        </motion.button>
+        {/* Right Side: Social Icons + Theme Toggle + Hamburger */}
+        <div className="flex items-center gap-4">
+          
+          {/* Social Icons (Desktop) */}
+          <div className="hidden md:flex gap-3">
+            {socialLinks.map(({ Icon, href }, i) => (
+              <a
+                key={i}
+                href={href}
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/70 hover:bg-red-600 hover:text-white transition-all duration-300"
+              >
+                <Icon size={14} />
+              </a>
+            ))}
+          </div>
+
+          {/* Theme Toggle Button */}
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/5 text-white/70 hover:bg-red-600 hover:text-white transition-all"
+            >
+              {theme === "dark" ? <HiSun size={18} /> : <HiMoon size={18} />}
+            </button>
+          )}
+
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={() => setOpen(true)}
+            className="w-11 h-11 flex items-center justify-center bg-red-600 rounded-full text-white hover:scale-110 transition-transform"
+          >
+            <HiMenuAlt3 size={24} />
+          </button>
+        </div>
       </div>
 
-      {/* 📱 Mobile Drawer */}
+      {/* Mobile Sidebar Overlay */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden fixed top-30 right-0 w-4/5  bg-gradient-to-b from-gray-500 via-black-700 to-black dark:from-pink-800 dark:via-pink-900 dark:to-black text-gray 
-            border-2 border-pink-700 dark:border-pink-900 shadow-sm flex flex-col items-center py-2 space-y-4"
-          >
-            {links.map((link) => (
-              <Link
-                key={link.path}
-                href={link.path}
-                onClick={() => setOpen(false)}
-                className="text-lg font-semibold text-white hover:text-black-300 transition-all duration-300"
-              >
-                {link.name}
-              </Link>
-            ))}
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
+            />
 
-            {/* Social Icons */}
-            <div className="flex gap-6 pt-6 border-t border-pink-700 dark:border-pink-900 w-3/4 justify-center">
-              <Link
-                href="https://www.facebook.com/sneyara.parabhina"
-                target="_blank"
-                className="text-pink-300 hover:scale-125 transition-transform duration-300"
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-[300px] bg-[#0a0a0a] z-[120] p-10 flex flex-col shadow-2xl"
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-6 right-6 text-white/50 hover:text-red-600 transition-colors"
               >
-                <FaFacebook size={24} />
-              </Link>
-              <Link
-                href="https://wa.me/01832346270"
-                target="_blank"
-                className="text-pink-300 hover:scale-125 transition-transform duration-300"
-              >
-                <FaSquareWhatsapp size={26} />
-              </Link>
-            </div>
-          </motion.div>
+                <IoClose size={32} />
+              </button>
+
+              <div className="flex flex-col gap-8 mt-16">
+                {links.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.path}
+                    onClick={() => setOpen(false)}
+                    className="text-3xl font-black text-white hover:text-red-600 transition-colors uppercase italic"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-auto">
+                <p className="text-white/40 text-xs uppercase tracking-widest mb-4">Follow Me</p>
+                <div className="flex gap-4">
+                  {socialLinks.map(({ Icon, href }, i) => (
+                    <a key={i} href={href} className="text-white/70 hover:text-red-600 transition-colors">
+                      <Icon size={20} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
