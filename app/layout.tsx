@@ -10,7 +10,8 @@ import SmoothScroll from "./components/SmoothScroll";
 import Cursor from "./components/Cursor"; 
 import { ThemeProvider } from "./components/ThemeProvider"; 
 import Services from "./components/services/Services";
-import Experience from "./components/experience/Experience"; // ইম্পোর্ট নিশ্চিত করুন
+import Experience from "./components/experience/Experience";
+import SparklesBackground from "./components/SparklesBackground"; // ঝিকিমিকি কম্পোনেন্ট ইম্পোর্ট
 
 export const metadata: Metadata = { 
   title: "Sneara | Portfolio",
@@ -24,24 +25,30 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-white dark:bg-[#0a0a0a] text-gray-800 dark:text-gray-100 transition-colors duration-300">
+      <body className="bg-white dark:bg-[#0a0a0a] text-gray-800 dark:text-gray-100 transition-colors duration-300 relative">
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 
           enableSystem={false}
         >
+          {/* ঝিকিমিকি ইফেক্টটি সবার নিচে ব্যাকগ্রাউন্ডে থাকবে */}
+          <SparklesBackground />
+
           <SmoothScroll>
             <Cursor /> 
             <Navbar />
-            <main>{children}</main>
             
-            {/* সেকশনগুলোর সিরিয়াল */}
-            <AboutSection />
-            <Services />
-            <Experience /> {/* এখন আর এরর আসবে না */}
-            <SkillsSection />
-            <ProjectsSection />
-            <Contact />
+            {/* মেইন কন্টেন্ট এবং সেকশনগুলো */}
+            <main className="relative z-10">
+              {children}
+              <AboutSection />
+              <Services />
+              <Experience />
+              <SkillsSection />
+              <ProjectsSection />
+              <Contact />
+            </main>
+            
             <Footer />
           </SmoothScroll>
         </ThemeProvider>

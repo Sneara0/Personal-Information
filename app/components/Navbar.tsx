@@ -29,9 +29,9 @@ export default function Navbar() {
 
   const socialLinks = [
     { Icon: FaInstagram, href: "#" },
-    { Icon: FaLinkedinIn, href: "#" },
+    { Icon: FaLinkedinIn, href: "https://www.linkedin.com/in/sneara-parvin-aa0a4b285/" },
     { Icon: FaTwitter, href: "#" },
-    { Icon: FaFacebookF, href: "#" },
+    { Icon: FaFacebookF, href: "https://www.facebook.com/sneyara.parabhina" },
   ];
 
   return (
