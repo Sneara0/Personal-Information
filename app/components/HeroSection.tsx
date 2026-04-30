@@ -114,7 +114,7 @@ const HeroSection = () => {
           <div className="relative w-64 h-64 md:w-80 md:h-80 z-20">
             <div className="absolute inset-0 bg-red-600/20 blur-[80px] rounded-full"></div>
             <img 
-              src="/your-profile.png" 
+              src="c:\Users\USER\Desktop\sneara..jfif" 
               alt="Sneara" 
               className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-700"
             />
