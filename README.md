@@ -30,7 +30,7 @@ This portfolio acts as my digital identity. Built with **React** and **Tailwind 
 
 ## 📸 Project Preview
 <p align="center">
-  <img src="আপনার-পোর্টফোলিও-স্ক্রিনশট-লিঙ্ক" width="90%" alt="Portfolio Preview" />
+  <img src="https://personal-information-pi.vercel.app/" width="90%" alt="Portfolio Preview" />
 </p>
 
 ## Installation ⚙️
